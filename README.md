@@ -1,5 +1,5 @@
-# TerminatorBotNet
-introduction Terminator Bot nets , A colaboration DL technology with Bot net for penetration testing. 
+# Leviathan
+introduction Leviothan , A colaboration DL technology with Network Scaners for penetration testing. 
 
 
 # Disclaimer
