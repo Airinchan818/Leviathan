@@ -1,13 +1,10 @@
-import socket
+from core import Aicore
+import torch
 
-def scan_port (host,port,timeout = 1) : 
-    with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as s :
-        s.settimeout(timeout)
-        return s.connect_ex((host,port)) == 0 
-
-host = "127.0.0.1"
-
-for port in range(1,1026) :
-    if scan_port(host,port) :
-        print(f"port: {port} terbuka ")
- 
+dummy = torch.rand(10,16)
+model = Aicore.architecture.MLP(
+    data_dim=16,output_dim=3,depth_submodel=2,sub_model_dim=(8,16),
+    variant='cls'
+)
+result = Aicore.architecture.mlp_runner(model,dummy)
+print(result)
