@@ -6,3 +6,5 @@ from .ReZero import ReZero
 from .Atttntion import Attention 
 from .ScaleNorm import ScaleNorm
 from .MultiHeadAttention import MultiHeadAttention
+from .LayerScale import LayerScale
+from .FeedForwardNetWork import FFN 

@@ -2,6 +2,7 @@ from core.Aicore import layer
 from torch import nn 
 import torch
 from typing import Literal
+godevice = "cuda" if torch.cuda.is_available() else "cpu"
 
 class MiniBlockMLP (nn.Module) :
     def __init__(self,input_dim : int ,output_dim : int ,expand_dim : int = 2 ) :
@@ -49,14 +50,17 @@ class MLP (nn.Module) :
         x = self.modelcore(x)
         return self.outlayer(x) 
 
-def mlp_runner (model : MLP, data ) :
+def mlp_runner (model : MLP, data : torch.Tensor , device : Literal['cpu','cuda'] = None) :
+    
+    if model.training is True :
+        model.eval()
+    target_device = device if device is not None else godevice
+    if str(next(model.parameters()).device) != target_device :
+        model.to(target_device)
+    if str(data.device) != target_device :
+        data = data.to(target_device)
     with torch.no_grad() :
         x = model(data)
-        if model.varian == 'bin' :
-            x = nn.functional.sigmoid(x)
-        elif model.varian == 'cls' :
-            x = nn.functional.softmax(x)
-
-    return x 
+    return x  
 
 
