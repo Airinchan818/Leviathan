@@ -25,7 +25,7 @@ class MultiHeadAttention (nn.Module) :
         k = self.__split_head(k)
         v = self.__split_head(v)
         
-        score = torch.matmul(q,k.permute(0,-3,-1,-2)) / float(self.div_dim)
+        score = torch.matmul(q,k.permute(0,-3,-1,-2)) / float(self.div_dim**0.5)
         score = nn.functional.softmax(score,dim=-1)
 
         if self.use_causalmask is True :

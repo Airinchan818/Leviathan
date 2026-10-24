@@ -8,3 +8,6 @@ from .ScaleNorm import ScaleNorm
 from .MultiHeadAttention import MultiHeadAttention
 from .LayerScale import LayerScale
 from .FeedForwardNetWork import FFN 
+from .LogitMixingAttention import LogitMixingAttention
+from .LinearLikeAttention import LinearLikeAttention
+from .LatentConnectedModel import LCM

@@ -14,7 +14,7 @@ class Attention (nn.Module) :
         k = self.k(k)
         v = self.v(v)
 
-        score = torch.matmul(q,k.permute(0,-1,-2)) / float(k.shape[-1])
+        score = torch.matmul(q,k.permute(0,-1,-2)) / float(k.shape[-1]**0.5)
         score = nn.functional.softmax(score,dim=-1)
         if self.causalmask is True :
             mask = 1 - torch.tril(torch.ones(size=(q.shape[1],q.shape[1])),diagonal=0).to(q.device)
